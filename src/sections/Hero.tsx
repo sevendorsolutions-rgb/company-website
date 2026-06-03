@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="Home" className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-28 pb-10 sm:pb-16 overflow-hidden bg-radial-glow bg-grid-pattern transition-colors duration-300">
+    <section id="Home" className="relative min-h-screen flex items-center justify-center pt-26 sm:pt-32 pb-10 sm:pb-16 overflow-hidden bg-radial-glow bg-grid-pattern transition-colors duration-300">
       {/* Background Orbs simulating GitHub glowing nebulas */}
       <div className="absolute top-1/4 left-1/4 w-48 sm:w-80 h-48 sm:h-80 rounded-full bg-violet-600/10 blur-[130px] dark:bg-violet-600/15 animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-56 sm:w-96 h-56 sm:h-96 rounded-full bg-cyan-500/10 blur-[130px] dark:bg-cyan-500/10 animate-pulse-slow delay-2000" />
