@@ -1,72 +1,63 @@
-import React, { useState } from 'react';
-import { Send, Github, Linkedin, Twitter, Dribbble, Cpu } from 'lucide-react';
+import React from 'react';
+import { Instagram, Facebook } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [error, setError] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) {
-      setError('Email is required');
-      return;
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const id = href === '#' ? 'Home' : href.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          const navHeight = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - navHeight;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }, 10);
+      } else if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regex.test(email)) {
-      setError('Please provide a valid email');
-      return;
-    }
-
-    setError('');
-    setSubscribed(true);
-    setEmail('');
-    setTimeout(() => setSubscribed(false), 5000);
   };
 
   return (
-    <footer className="relative border-t border-slate-200/50 dark:border-white/5 bg-slate-50 dark:bg-zinc-950/40 pt-20 pb-10 transition-colors duration-300">
+    <footer className="relative border-t border-slate-200/50 dark:border-white/5 bg-slate-50 dark:bg-zinc-950/40 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-16">
           {/* Logo & Info */}
-          <div>
-            <a href="#" className="flex items-center gap-2 mb-6 group">
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-500 text-white shadow-lg shadow-violet-500/20 transition-all">
-                <Cpu className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-              </div>
-              <span className="font-outfit font-bold text-xl tracking-tight text-slate-900 dark:text-white">
-                Synapse<span className="text-violet-500 dark:text-cyan-400">Digital</span>
-              </span>
+          <div className="sm:col-span-2 lg:col-span-2 pr-0 lg:pr-12">
+            <a href="#" onClick={(e) => handleNavClick(e, '#')} className="flex items-center gap-2 mb-4 sm:mb-6 group">
+              <img src="/logo.png" alt="SeVenDor Solutions" className="h-12 sm:h-16 w-auto object-contain dark:invert" />
             </a>
-            <p className="text-slate-500 dark:text-zinc-400 text-sm leading-relaxed mb-6">
+            <p className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
               Engineering cutting-edge software, web applications, and intelligent cloud systems to scale modern businesses worldwide.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-9 h-9 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-violet-500 dark:hover:text-cyan-400 transition-colors hover:scale-105 duration-300" aria-label="Twitter">
-                <Twitter className="w-4 h-4" />
+            <div className="flex gap-3 sm:gap-4">
+              <a href="https://www.instagram.com/sevendorsolutions/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 text-white shadow-md shadow-pink-500/30 flex items-center justify-center ring-1 ring-white/20 hover:scale-110 transition-transform duration-300" aria-label="Instagram">
+                <Instagram className="w-4 h-4" strokeWidth={2.5} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-violet-500 dark:hover:text-cyan-400 transition-colors hover:scale-105 duration-300" aria-label="LinkedIn">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-violet-500 dark:hover:text-cyan-400 transition-colors hover:scale-105 duration-300" aria-label="Github">
-                <Github className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-violet-500 dark:hover:text-cyan-400 transition-colors hover:scale-105 duration-300" aria-label="Dribbble">
-                <Dribbble className="w-4 h-4" />
+              <a href="https://www.facebook.com/people/Sevendor-Solutions/61590485493499/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/30 flex items-center justify-center ring-1 ring-white/20 hover:scale-110 transition-transform duration-300" aria-label="Facebook">
+                <Facebook className="w-4 h-4" strokeWidth={2.5} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">
+            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 uppercase tracking-wider text-[11px] sm:text-xs">
               Quick Links
             </h4>
-            <ul className="space-y-4">
-              {['About', 'Services', 'Tech Stack', 'Portfolio', 'Pricing'].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '-')}`} className="text-slate-500 dark:text-zinc-400 text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
-                    {link}
+            <ul className="space-y-3 sm:space-y-4">
+              {[
+                { name: 'Home', href: '#Home' },
+                { name: 'About', href: '#about' },
+                { name: 'Services', href: '#services' },
+                { name: 'Why Us', href: '#whyus' },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -75,13 +66,13 @@ export const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">
+            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 uppercase tracking-wider text-[11px] sm:text-xs">
               Services
             </h4>
-            <ul className="space-y-4">
-              {['Custom Software', 'Web Development', 'Mobile Apps', 'Cloud Solutions', 'UI/UX Design', 'API Development'].map((service) => (
+            <ul className="space-y-3 sm:space-y-4">
+              {['Website Development', 'Product Application', 'Mobile App Development', 'Digital Marketing', 'Graphic Design', 'Video Editing'].map((service) => (
                 <li key={service}>
-                  <a href="#services" className="text-slate-500 dark:text-zinc-400 text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
+                  <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
                     {service}
                   </a>
                 </li>
@@ -89,52 +80,19 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">
-              Stay Updated
-            </h4>
-            <p className="text-slate-500 dark:text-zinc-400 text-sm leading-relaxed mb-6">
-              Subscribe to our newsletter for insights on modern technology, product development, and software updates.
-            </p>
-            <form onSubmit={handleSubscribe} className="relative">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError('');
-                }}
-                className="w-full pl-4 pr-12 py-3 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 focus:border-violet-500 dark:focus:border-cyan-500 outline-none text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-500 shadow-sm transition-all"
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white flex items-center justify-center hover:shadow-md transition-all active:scale-95 animate-gradient-x"
-                aria-label="Subscribe"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
-            {error && <p className="text-rose-500 text-xs mt-2 pl-3">{error}</p>}
-            {subscribed && (
-              <p className="text-emerald-500 text-xs mt-2 pl-3 font-medium animate-pulse">
-                Successfully subscribed! Check your inbox.
-              </p>
-            )}
-          </div>
+
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-slate-200/50 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-400 dark:text-zinc-500 text-xs">
-            &copy; {new Date().getFullYear()} Synapse Digital. All rights reserved.
+        <div className="pt-6 sm:pt-8 border-t border-slate-200/50 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-slate-400 dark:text-zinc-500 text-[10px] sm:text-xs">
+            &copy; {new Date().getFullYear()} SeVenDor Solutions. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-xs transition-colors">
+          <div className="flex gap-4 sm:gap-6">
+            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-[10px] sm:text-xs transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-xs transition-colors">
+            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-[10px] sm:text-xs transition-colors">
               Terms of Service
             </a>
           </div>

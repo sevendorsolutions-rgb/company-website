@@ -3,15 +3,12 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { WhatsAppToggle } from './components/WhatsAppToggle';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
-import { Technologies } from './sections/Technologies';
-import { Portfolio } from './sections/Portfolio';
-import { Testimonials } from './sections/Testimonials';
-import { Pricing } from './sections/Pricing';
+import { WhyUs } from './sections/WhyUs';
 import { FAQ } from './sections/FAQ';
-import { BlogPreview } from './sections/BlogPreview';
 import { Contact } from './sections/Contact';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu } from 'lucide-react';
@@ -47,7 +44,7 @@ function LandingPageContent() {
               <div className="absolute inset-0 rounded-2xl border border-cyan-400 animate-ping opacity-25" />
             </div>
             <span className="font-outfit font-extrabold text-2xl tracking-wider uppercase bg-gradient-to-r from-violet-500 to-cyan-400 bg-clip-text text-transparent">
-              Synapse Digital
+              SeVenDor Solutions
             </span>
             <div className="flex gap-1.5 mt-2">
               <span className="w-2.5 h-2.5 rounded-full bg-violet-600 animate-bounce" />
@@ -69,16 +66,13 @@ function LandingPageContent() {
             <Hero />
             <About />
             <Services />
-            <Technologies />
-            <Portfolio />
-            <Testimonials />
-            <Pricing />
+            <WhyUs />
             <FAQ />
-            <BlogPreview />
             <Contact />
+            <Footer />
           </main>
-          <Footer />
           <ScrollToTop />
+          <WhatsAppToggle />
         </motion.div>
       )}
     </AnimatePresence>
