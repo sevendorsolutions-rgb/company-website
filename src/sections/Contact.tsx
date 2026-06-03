@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, ArrowRight, MessageCircle, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Contact: React.FC = () => {
