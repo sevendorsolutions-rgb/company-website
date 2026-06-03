@@ -20,13 +20,36 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { name: 'About', href: '#about' },
+    { name: 'Home', href: '#Home' },
     { name: 'Services', href: '#services' },
-    { name: 'Tech Stack', href: '#tech' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Why Us', href: '#whyus' },
+    { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      setIsOpen(false); // Close mobile menu if open
+
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        // Add a slight delay to allow mobile menu to close and prevent scroll interruption
+        setTimeout(() => {
+          const navHeight = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - navHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 10);
+      }
+    }
+  };
 
   return (
     <header
@@ -39,9 +62,9 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-500 text-white shadow-lg shadow-violet-500/20 group-hover:shadow-cyan-500/30 transition-all duration-300">
-              <Cpu className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+          <a href="#" onClick={(e) => handleNavClick(e, '#Home')} className="flex items-center gap-2 group">
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-500 text-white shadow-lg shadow-violet-500/30 group-hover:shadow-cyan-500/40 transition-all duration-300 ring-1 ring-white/20">
+              <Cpu className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" strokeWidth={2.5} />
               <div className="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
             </div>
             <span className="font-outfit font-bold text-xl tracking-tight text-slate-900 dark:text-white">
@@ -55,6 +78,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-cyan-400 transition-colors relative group py-2"
               >
                 {item.name}
@@ -66,7 +90,7 @@ export const Navbar: React.FC = () => {
           {/* Desktop Right Panel */}
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
-            <a href="#contact" className="btn-primary py-2 px-5 text-sm">
+            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="btn-primary py-2 px-5 text-sm">
               Get Started
             </a>
           </div>
@@ -100,7 +124,7 @@ export const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-zinc-800 hover:text-violet-600 dark:hover:text-cyan-400 transition-colors"
                 >
                   {item.name}
@@ -109,7 +133,7 @@ export const Navbar: React.FC = () => {
               <div className="pt-4 border-t border-slate-200 dark:border-zinc-800 flex justify-center">
                 <a
                   href="#contact"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, '#contact')}
                   className="w-full text-center btn-primary py-2.5"
                 >
                   Get Started

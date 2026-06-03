@@ -6,12 +6,8 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
-import { Technologies } from './sections/Technologies';
-import { Portfolio } from './sections/Portfolio';
-import { Testimonials } from './sections/Testimonials';
-import { Pricing } from './sections/Pricing';
+import { WhyUs } from './sections/WhyUs';
 import { FAQ } from './sections/FAQ';
-import { BlogPreview } from './sections/BlogPreview';
 import { Contact } from './sections/Contact';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu } from 'lucide-react';
@@ -69,12 +65,8 @@ function LandingPageContent() {
             <Hero />
             <About />
             <Services />
-            <Technologies />
-            <Portfolio />
-            <Testimonials />
-            <Pricing />
+            <WhyUs />
             <FAQ />
-            <BlogPreview />
             <Contact />
           </main>
           <Footer />
