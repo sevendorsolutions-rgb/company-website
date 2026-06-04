@@ -20,7 +20,7 @@ const allServices = [
     items: [
       { label: 'Front-End', detail: 'HTML, CSS, JavaScript UIs' },
       { label: 'Back-End', detail: 'Servers, databases & logic' },
-      { label: 'CMS', detail: 'WordPress, Shopify, Webflow' },
+     // { label: 'CMS', detail: 'WordPress, Shopify, Webflow' },
       { label: 'Full-Stack', detail: 'End-to-end development' },
     ],
   },
@@ -55,7 +55,8 @@ const allServices = [
     items: [
       { label: 'iOS', detail: 'Native iPhone & iPad apps' },
       { label: 'Android', detail: 'Native Android ecosystem' },
-      { label: 'Cross-Platform', detail: 'Flutter & React Native' },
+      //{ label: 'Cross-Platform', detail: 'Flutter & React Native' },
+      { label: 'Cross-Platform', detail: 'React Native' },
       { label: 'ASO', detail: 'App store visibility' },
     ],
   },
@@ -270,7 +271,8 @@ export const Services: React.FC = () => {
       {/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          // <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
