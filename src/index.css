@@ -31,6 +31,12 @@
   --animate-pulse-slow: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-glow: glow 3s ease-in-out infinite alternate;
   --animate-spin-slow: spin-slow 20s linear infinite;
+  --animate-marquee-ltr: marquee-ltr 28s linear infinite;
+
+  @keyframes marquee-ltr {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
 
   @keyframes gradient-x {
     0%, 100% { background-size: 200% 200%; background-position: left center; }
@@ -68,6 +74,19 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float-slow,
+  .animate-spin-slow,
+  .animate-pulse-slow,
+  .animate-marquee-ltr {
+    animation: none !important;
+  }
 }
 
 body {

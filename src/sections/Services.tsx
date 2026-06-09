@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Globe, Cloud, Smartphone, TrendingUp, Palette, Video, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
@@ -119,9 +120,122 @@ const allServices = [
   },
 ];
 
+type Service = (typeof allServices)[number];
+
+const ServiceModal: React.FC<{
+  service: Service;
+  onClose: () => void;
+}> = ({ service, onClose }) => {
+  const IconComponent = service.icon;
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  return createPortal(
+    <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
+      />
+      <div className="fixed inset-0 overflow-y-auto overscroll-contain">
+        <div className="flex min-h-full items-end sm:items-center justify-center p-0 sm:p-4">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full sm:max-w-2xl max-h-[92dvh] sm:max-h-[min(90dvh,800px)] overflow-y-auto bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-3xl p-5 sm:p-8 pb-[max(1.25rem,env(safe-area-inset-bottom))] border border-slate-200 dark:border-white/10 shadow-2xl"
+          >
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors text-slate-500 dark:text-zinc-400 z-10"
+              aria-label="Close service details"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-start gap-3 sm:gap-4 mb-5 sm:mb-6 pr-10">
+              <div className={`p-3 sm:p-4 rounded-2xl bg-gradient-to-br ${service.gradient} text-white shadow-xl ${service.shadow} ring-1 ring-white/20 flex items-center justify-center shrink-0`}>
+                <IconComponent className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={2.5} />
+              </div>
+              <div className="min-w-0">
+                <span className={`text-xs font-bold uppercase tracking-wider ${service.numColor}`}>
+                  {service.category} Services
+                </span>
+                <h3
+                  id="service-modal-title"
+                  className="font-outfit font-bold text-xl sm:text-3xl text-slate-800 dark:text-white leading-tight"
+                >
+                  {service.title}
+                </h3>
+              </div>
+            </div>
+
+            <div className="space-y-5 sm:space-y-6">
+              <p className="text-slate-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
+                Our {service.title.toLowerCase()} are designed to provide maximum value and scalability. We utilize industry-leading technologies and best practices to ensure your business stays ahead of the curve, delivering secure, fast, and highly-optimized solutions.
+              </p>
+
+              <div>
+                <h4 className="font-bold text-slate-800 dark:text-white mb-3 sm:mb-4 text-sm sm:text-base border-b border-slate-200 dark:border-zinc-800 pb-2">
+                  Key Capabilities & Offerings:
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {service.items.map((item, i) => (
+                    <li key={i} className="flex flex-col text-sm p-3 sm:p-4 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-zinc-700/50">
+                      <span className="font-bold text-slate-800 dark:text-zinc-100 mb-1 flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full flex-shrink-0 ${service.numColor.replace('text-', 'bg-')}`} />
+                        {item.label}
+                      </span>
+                      <span className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm pl-4">{item.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-4 sm:pt-6 border-t border-slate-200/50 dark:border-zinc-800/60 flex flex-col-reverse sm:flex-row justify-end gap-3">
+                <button type="button" onClick={onClose} className="btn-secondary py-2.5 px-6 w-full sm:w-auto">
+                  Close
+                </button>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onClose();
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      const navHeight = 80;
+                      const offset = element.getBoundingClientRect().top + window.scrollY - navHeight;
+                      window.scrollTo({ top: offset, behavior: 'smooth' });
+                    }
+                  }}
+                  className="btn-primary py-2.5 px-6 text-center w-full sm:w-auto"
+                >
+                  Discuss Your Project
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+};
+
 export const Services: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedService, setSelectedService] = useState<typeof allServices[0] | null>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const filtered =
     activeCategory === 'All'
@@ -151,7 +265,7 @@ export const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-zinc-900/30 transition-colors duration-300">
+    <section id="services" className="py-24 relative overflow-x-hidden bg-slate-50 dark:bg-zinc-900/30 transition-colors duration-300">
       {/* Background Mesh elements */}
       <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-violet-600/5 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none" />
@@ -268,92 +382,13 @@ export const Services: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
-          // <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedService(null)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden z-10"
-            >
-              <button
-                onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors text-slate-500 dark:text-zinc-400"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              <div className="flex items-center gap-4 mb-6 mt-2">
-                <div className={`p-4 rounded-2xl bg-gradient-to-br ${selectedService.gradient} text-white shadow-xl ${selectedService.shadow} ring-1 ring-white/20 flex items-center justify-center`}>
-                  <selectedService.icon className="w-8 h-8" strokeWidth={2.5} />
-                </div>
-                <div>
-                  <span className={`text-xs font-bold uppercase tracking-wider ${selectedService.numColor}`}>
-                    {selectedService.category} Services
-                  </span>
-                  <h3 className="font-outfit font-bold text-2xl sm:text-3xl text-slate-800 dark:text-white leading-tight">
-                    {selectedService.title}
-                  </h3>
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <p className="text-slate-600 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
-                  Our {selectedService.title.toLowerCase()} are designed to provide maximum value and scalability. We utilize industry-leading technologies and best practices to ensure your business stays ahead of the curve, delivering secure, fast, and highly-optimized solutions.
-                </p>
-                
-                <div>
-                  <h4 className="font-bold text-slate-800 dark:text-white mb-4 text-sm sm:text-base border-b border-slate-200 dark:border-zinc-800 pb-2">
-                    Key Capabilities & Offerings:
-                  </h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {selectedService.items.map((item, i) => (
-                      <li key={i} className="flex flex-col text-sm p-4 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-zinc-700/50">
-                        <span className="font-bold text-slate-800 dark:text-zinc-100 mb-1 flex items-center gap-2">
-                          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${selectedService.numColor.replace('text-', 'bg-')}`} />
-                          {item.label}
-                        </span>
-                        <span className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm pl-4">{item.detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="pt-6 mt-4 border-t border-slate-200/50 dark:border-zinc-800/60 flex flex-col sm:flex-row justify-end gap-3">
-                  <button
-                    onClick={() => setSelectedService(null)}
-                    className="btn-secondary py-2.5 px-6"
-                  >
-                    Close
-                  </button>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setSelectedService(null);
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                    className="btn-primary py-2.5 px-6 text-center"
-                  >
-                    Discuss Your Project
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+          <ServiceModal
+            key={selectedService.num}
+            service={selectedService}
+            onClose={() => setSelectedService(null)}
+          />
         )}
       </AnimatePresence>
     </section>

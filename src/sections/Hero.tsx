@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Activity, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+import { Clients } from './Clients';
 
 export const Hero: React.FC = () => {
   const containerVariants: Variants = {
@@ -117,35 +118,27 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-5 relative w-full flex justify-center items-center"
           >
-            {/* Spinning Wireframe Globe */}
             <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[420px] aspect-square flex items-center justify-center select-none">
-              {/* Large ambient glowing nebula behind globe */}
               <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-violet-600/10 to-cyan-500/10 dark:from-violet-600/20 dark:to-cyan-500/20 blur-3xl" />
-              
-              {/* Rotating main globe chassis */}
+
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
                 className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center"
               >
-                {/* Dashed outer atmospheric layer */}
                 <div className="absolute inset-0 rounded-full border border-dashed border-violet-500/25 dark:border-cyan-500/15 scale-[1.08] animate-spin-slow" />
-                
-                {/* Latitudinal and longitudinal axis segments */}
+
                 <div className="absolute inset-0 rounded-full border border-violet-500/15 dark:border-cyan-500/10 transform rotate-45" />
                 <div className="absolute inset-0 rounded-full border border-violet-500/15 dark:border-cyan-500/10 transform -rotate-45" />
                 <div className="absolute inset-x-0 h-0.5 border-t border-violet-500/20 dark:border-cyan-500/10 top-1/2 -translate-y-1/2" />
                 <div className="absolute inset-y-0 w-0.5 border-l border-violet-500/20 dark:border-cyan-500/10 left-1/2 -translate-x-1/2" />
-                
-                {/* Horizontal latitude lines */}
+
                 <div className="absolute inset-y-0 w-[70%] rounded-full border border-violet-500/15 dark:border-cyan-500/10 left-[15%]" />
                 <div className="absolute inset-y-0 w-[40%] rounded-full border border-violet-500/15 dark:border-cyan-500/10 left-[30%]" />
-                
-                {/* Vertical longitude lines */}
+
                 <div className="absolute inset-x-0 h-[70%] rounded-full border border-violet-500/15 dark:border-cyan-500/10 top-[15%]" />
                 <div className="absolute inset-x-0 h-[40%] rounded-full border border-violet-500/15 dark:border-cyan-500/10 top-[30%]" />
 
-                {/* SVG Connecting arcs */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
                   <defs>
                     <linearGradient id="arcGlow" x1="0" y1="0" x2="1" y2="1">
@@ -153,40 +146,43 @@ export const Hero: React.FC = () => {
                       <stop offset="100%" stopColor="#06b6d4" />
                     </linearGradient>
                   </defs>
-                  {/* Arc paths */}
                   <path d="M 25 35 Q 50 10 75 35" fill="none" stroke="url(#arcGlow)" strokeWidth="0.6" strokeDasharray="1.5 1.5" />
                   <path d="M 15 50 Q 50 90 85 50" fill="none" stroke="url(#arcGlow)" strokeWidth="0.5" />
                   <path d="M 30 70 Q 50 30 70 70" fill="none" stroke="url(#arcGlow)" strokeWidth="0.8" strokeDasharray="2 1" />
                 </svg>
 
-                {/* Pulsing server coordinates/beacons */}
                 <div className="absolute top-1/4 left-1/3">
                   <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500" />
                   </span>
                 </div>
                 <div className="absolute bottom-1/3 right-1/4">
                   <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-violet-500" />
                   </span>
                 </div>
                 <div className="absolute top-1/2 right-1/3">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
                 </div>
                 <div className="absolute bottom-1/4 left-1/4">
                   <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500" />
                   </span>
                 </div>
               </motion.div>
             </div>
           </motion.div>
+
+          {/* Clients strip — full-width row below text + globe */}
+          <div className="lg:col-span-12">
+            <Clients />
+          </div>
         </div>
       </div>
     </section>
