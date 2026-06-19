@@ -55,8 +55,8 @@ export const Pricing: React.FC = () => {
   return (
     <section id="pricing" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-zinc-900/30 transition-colors duration-300">
       {/* Glow Effects */}
-      <div className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-violet-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-violet-500/10 dark:bg-violet-500/15 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-cyan-500/10 dark:bg-cyan-500/15 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">

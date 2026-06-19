@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Facebook } from 'lucide-react';
+import { Instagram, Facebook, Phone, Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
 
@@ -22,41 +22,67 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-slate-200/50 dark:border-white/5 bg-slate-50 dark:bg-zinc-950/40 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 transition-colors duration-300">
+    <footer className="relative border-t border-light-border dark:border-dark-border bg-white dark:bg-[#070a13] pt-16 sm:pt-20 pb-10 transition-colors duration-300">
+      {/* Decorative top gradient border */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand-blue via-indigo-500 to-brand-orange" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-16">
-          {/* Logo & Info */}
-          <div className="sm:col-span-2 lg:col-span-2 pr-0 lg:pr-12">
-            <a href="#" onClick={(e) => handleNavClick(e, '#')} className="flex items-center gap-2 mb-4 sm:mb-6 group">
-              <img src="/logo.png" alt="SeVenDor Solutions" className="h-12 sm:h-16 w-auto object-contain dark:invert" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16">
+          
+          {/* Column 1: Logo, Brief description, Socials */}
+          <div className="sm:col-span-2 lg:col-span-2 pr-0 lg:pr-12 space-y-6">
+            <a href="#" onClick={(e) => handleNavClick(e, '#')} className="flex items-center gap-2 group inline-block">
+              <img 
+                src="/logo.png" 
+                alt="SeVenDor Solutions" 
+                className="h-16 w-auto object-contain dark:invert transition-transform duration-300 group-hover:scale-102" 
+              />
             </a>
-            <p className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-sm">
               Engineering cutting-edge software, web applications, and intelligent cloud systems to scale modern businesses worldwide.
             </p>
-            <div className="flex gap-3 sm:gap-4">
-              <a href="https://www.instagram.com/sevendorsolutions/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 text-white shadow-md shadow-pink-500/30 flex items-center justify-center ring-1 ring-white/20 hover:scale-110 transition-transform duration-300" aria-label="Instagram">
-                <Instagram className="w-4 h-4" strokeWidth={2.5} />
+            
+            {/* Social Icons */}
+            <div className="flex gap-4">
+              <a 
+                href="https://www.instagram.com/sevendorsolutions/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-brand-orange hover:text-white dark:hover:bg-brand-orange dark:hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-sm" 
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4.5 h-4.5" strokeWidth={2} />
               </a>
-              <a href="https://www.facebook.com/people/Sevendor-Solutions/61590485493499/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/30 flex items-center justify-center ring-1 ring-white/20 hover:scale-110 transition-transform duration-300" aria-label="Facebook">
-                <Facebook className="w-4 h-4" strokeWidth={2.5} />
+              <a 
+                href="https://www.facebook.com/people/Sevendor-Solutions/61590485493499/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue dark:hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-sm" 
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4.5 h-4.5" strokeWidth={2} />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Column 2: Quick Links */}
           <div>
-            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 uppercase tracking-wider text-[11px] sm:text-xs">
+            <h4 className="font-outfit font-extrabold text-brand-navy dark:text-white mb-6 uppercase tracking-wider text-xs sm:text-sm">
               Quick Links
             </h4>
-            <ul className="space-y-3 sm:space-y-4">
+            <ul className="space-y-3">
               {[
                 { name: 'Home', href: '#Home' },
-                { name: 'About', href: '#about' },
+                { name: 'About Us', href: '#about' },
                 { name: 'Services', href: '#services' },
                 { name: 'Why Us', href: '#whyus' },
               ].map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
+                  <a 
+                    href={link.href} 
+                    onClick={(e) => handleNavClick(e, link.href)} 
+                    className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-orange hover:pl-1 transition-all duration-300 inline-block"
+                  >
                     {link.name}
                   </a>
                 </li>
@@ -64,15 +90,19 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Column 3: Services */}
           <div>
-            <h4 className="font-outfit font-semibold text-slate-900 dark:text-white mb-4 sm:mb-6 uppercase tracking-wider text-[11px] sm:text-xs">
+            <h4 className="font-outfit font-extrabold text-brand-navy dark:text-white mb-6 uppercase tracking-wider text-xs sm:text-sm">
               Services
             </h4>
-            <ul className="space-y-3 sm:space-y-4">
+            <ul className="space-y-3">
               {['Website Development', 'Product Application', 'Mobile App Development', 'Digital Marketing', 'Graphic Design', 'Video Editing'].map((service) => (
                 <li key={service}>
-                  <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm hover:text-violet-600 dark:hover:text-cyan-400 transition-colors">
+                  <a 
+                    href="#services" 
+                    onClick={(e) => handleNavClick(e, '#services')} 
+                    className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-blue hover:pl-1 transition-all duration-300 inline-block"
+                  >
                     {service}
                   </a>
                 </li>
@@ -80,19 +110,61 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
+          {/* Column 4: Products & Direct Info */}
+          <div>
+            <h4 className="font-outfit font-extrabold text-brand-navy dark:text-white mb-6 uppercase tracking-wider text-xs sm:text-sm">
+              Products
+            </h4>
+            <ul className="space-y-3 mb-6">
+              <li>
+                <a
+                  href="https://hrms-product.vercel.app/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-blue hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  HRMS
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://core-banking-seven.vercel.app/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-orange hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  Net Banking
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">↗</span>
+                </a>
+              </li>
+            </ul>
+            
+            {/* Quick Contacts */}
+            <div className="space-y-2.5 pt-2 border-t border-light-border dark:border-dark-border">
+              <a href="tel:+917995888660" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 hover:text-brand-blue transition-colors">
+                <Phone className="w-3.5 h-3.5 text-brand-orange" />
+                <span>+91 7995888660</span>
+              </a>
+              <a href="mailto:sevendorsolutions@gmail.com" className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 hover:text-brand-orange transition-colors">
+                <Mail className="w-3.5 h-3.5 text-brand-orange animate-pulse" />
+                <span className="truncate">sevendorsolutions@gmail.com</span>
+              </a>
+            </div>
+          </div>
 
         </div>
 
-        {/* Bottom */}
-        <div className="pt-6 sm:pt-8 border-t border-slate-200/50 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-slate-400 dark:text-zinc-500 text-[10px] sm:text-xs">
+        {/* Footer Bottom area (Inspire by dizisolutions copyright styling) */}
+        <div className="pt-8 border-t border-light-border dark:border-dark-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-slate-400 dark:text-slate-500 text-xs text-center sm:text-left">
             &copy; {new Date().getFullYear()} SeVenDor Solutions. All rights reserved.
           </p>
-          <div className="flex gap-4 sm:gap-6">
-            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-[10px] sm:text-xs transition-colors">
+          <div className="flex gap-6 text-xs">
+            <a href="#" className="text-slate-400 dark:text-slate-500 hover:text-brand-blue transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-slate-400 dark:text-zinc-500 hover:text-slate-600 dark:hover:text-zinc-300 text-[10px] sm:text-xs transition-colors">
+            <a href="#" className="text-slate-400 dark:text-slate-500 hover:text-brand-orange transition-colors">
               Terms of Service
             </a>
           </div>
@@ -101,4 +173,5 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+
 export default Footer;

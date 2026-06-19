@@ -2,11 +2,11 @@
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
-import { ScrollToTop } from './components/ScrollToTop';
 import { WhatsAppToggle } from './components/WhatsAppToggle';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Services } from './sections/Services';
+import { Products } from './sections/Products';
 import { WhyUs } from './sections/WhyUs';
 import { FAQ } from './sections/FAQ';
 import { Contact } from './sections/Contact';
@@ -20,12 +20,12 @@ function LandingPageContent() {
         <Hero />
         <About />
         <Services />
+        <Products />
         <WhyUs />
         <FAQ />
         <Contact />
         <Footer />
       </main>
-      <ScrollToTop />
       <WhatsAppToggle />
     </div>
   );

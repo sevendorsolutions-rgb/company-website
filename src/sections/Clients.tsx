@@ -1,131 +1,112 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const clients = [
   {
     name: 'SeVendor Solutions',
     url: 'https://sevendorsolutions.com/',
-    description: 'Smart digital solutions for modern businesses',
-    accent: 'from-violet-500 to-fuchsia-500',
-    glow: 'shadow-violet-500/25',
-    border: 'border-violet-500/40 dark:border-violet-400/30',
+    bgLight: 'bg-gradient-to-br from-blue-50/60 to-indigo-50/60',
+    bgDark: 'dark:bg-gradient-to-br dark:from-[#0b1329] dark:to-[#0f1b3d]',
+    border: 'border-blue-200/50 dark:border-blue-900/30',
+    hoverBg: 'hover:from-blue-100 hover:to-indigo-100 dark:hover:from-[#0f1c3f] dark:hover:to-[#172b5c]',
+    hoverBorder: 'hover:border-brand-blue/30 dark:hover:border-brand-blue/30',
+    hoverGlow: 'hover:shadow-lg hover:shadow-brand-blue/10 dark:hover:shadow-brand-blue/20',
   },
   {
     name: 'Vero Moda',
     url: 'https://www.veromoda.com/',
-    description: 'Global fashion brand & e-commerce experience',
-    accent: 'from-cyan-400 to-blue-500',
-    glow: 'shadow-cyan-500/25',
-    border: 'border-cyan-500/40 dark:border-cyan-400/30',
+    bgLight: 'bg-gradient-to-br from-orange-50/60 to-amber-50/60',
+    bgDark: 'dark:bg-gradient-to-br dark:from-[#24120a] dark:to-[#36170d]',
+    border: 'border-orange-200/50 dark:border-orange-950/20',
+    hoverBg: 'hover:from-orange-100 hover:to-amber-100 dark:hover:from-[#36170d] dark:hover:to-[#4e2213]',
+    hoverBorder: 'hover:border-brand-orange/30 dark:hover:border-brand-orange/30',
+    hoverGlow: 'hover:shadow-lg hover:shadow-brand-orange/10 dark:hover:shadow-brand-orange/20',
   },
 ] as const;
 
-const ClientCard: React.FC<(typeof clients)[number] & { compact?: boolean }> = ({
+const ClientCard: React.FC<(typeof clients)[number]> = ({
   name,
   url,
-  description,
-  accent,
-  glow,
+  bgLight,
+  bgDark,
   border,
-  compact = false,
+  hoverBg,
+  hoverBorder,
+  hoverGlow,
 }) => (
   <a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className={`group relative flex shrink-0 items-center gap-3 sm:gap-4 ${
-      compact
-        ? 'px-4 py-3 rounded-xl w-full'
-        : 'px-6 py-4 sm:px-8 sm:py-5 rounded-2xl min-w-[300px] sm:min-w-[320px]'
-    } glass-card border-2 ${border} bg-white/90 dark:bg-zinc-900/80 shadow-lg ${glow} hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300`}
+    className={`group relative flex items-center justify-center w-40 h-18 sm:w-44 sm:h-20 rounded-2xl border ${border} ${bgLight} ${bgDark} ${hoverBg} ${hoverBorder} ${hoverGlow} hover:-translate-y-1 shadow-md transition-all duration-300`}
   >
-    <div
-      className={`absolute inset-0 ${compact ? 'rounded-xl' : 'rounded-2xl'} bg-gradient-to-r ${accent} opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-300 pointer-events-none`}
-    />
-    <div
-      className={`relative shrink-0 ${
-        compact ? 'w-10 h-10 rounded-lg text-base' : 'w-12 h-12 sm:w-14 sm:h-14 rounded-xl text-lg sm:text-xl'
-      } bg-gradient-to-br ${accent} text-white shadow-lg ${glow} ring-1 ring-white/25 flex items-center justify-center font-outfit font-bold`}
-    >
-      {name.charAt(0)}
-    </div>
-    <div className="relative flex-1 min-w-0 text-left">
-      <div className="flex items-center gap-1.5 sm:gap-2">
-        <h3
-          className={`font-outfit font-bold ${
-            compact ? 'text-sm' : 'text-base sm:text-lg'
-          } bg-gradient-to-r ${accent} bg-clip-text text-transparent truncate`}
-        >
-          {name}
-        </h3>
-        <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 group-hover:text-violet-500 dark:group-hover:text-cyan-400 shrink-0 transition-colors" />
-      </div>
-      <p className={`${compact ? 'text-[11px]' : 'text-xs sm:text-sm'} text-slate-500 dark:text-zinc-400 mt-0.5 line-clamp-1`}>
-        {description}
-      </p>
-      <span
-        className={`inline-block mt-1.5 sm:mt-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r ${accent} text-white`}
-      >
-        Featured Client
-      </span>
+    {/* Subtle top indicator glow bar */}
+    <div className={`absolute top-0 left-6 right-6 h-[1.5px] bg-gradient-to-r from-transparent ${name === 'SeVendor Solutions' ? 'via-brand-blue' : 'via-brand-orange'} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+    
+    <div className="relative z-10 flex items-center justify-center px-4">
+      {name === 'SeVendor Solutions' ? (
+        <img 
+          src="/logo.png" 
+          alt="SeVendor Solutions Logo" 
+          className="max-h-10 sm:max-h-12 w-auto object-contain dark:invert transition-transform duration-300 group-hover:scale-108"
+          loading="lazy"
+        />
+      ) : (
+        <span className="font-outfit font-extrabold tracking-[0.25em] text-sm sm:text-base uppercase text-slate-800 dark:text-white transition-all duration-300 group-hover:scale-108 group-hover:text-brand-orange">
+          VERO MODA
+        </span>
+      )}
     </div>
   </a>
 );
 
 export const Clients: React.FC = () => {
-  // More duplications for a seamless marquee loop
-  const marqueeItems = [...clients, ...clients, ...clients, ...clients];
+  // Multiply the 2 client logos to fill the marquee width and loop seamlessly
+  const marqueeItems = [...clients, ...clients, ...clients, ...clients, ...clients, ...clients, ...clients];
 
   return (
-    <div id="clients" className="py-6 sm:py-10 relative overflow-hidden transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-4 sm:mb-6">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="text-xs sm:text-sm font-bold text-violet-600 dark:text-cyan-400 uppercase tracking-widest mb-2 sm:mb-3">
-            Our Clients
-          </div>
-          <h2 className="font-outfit font-bold text-xl sm:text-2xl md:text-3xl text-slate-900 dark:text-white">
-            Trusted by Leading Brands
-          </h2>
-        </motion.div>
-      </div>
+    <div id="clients" className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-colors duration-300">
+      
+      {/* Outer Single Large Card Wrapper */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="p-6 sm:p-8 rounded-3xl glass-card border border-light-border dark:border-dark-border shadow-xl relative overflow-hidden bg-white/60 dark:bg-dark-card/50"
+      >
+        {/* Soft background highlights */}
+        <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-brand-blue/5 dark:bg-brand-blue/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-44 h-44 rounded-full bg-brand-orange/5 dark:bg-brand-orange/5 blur-3xl pointer-events-none" />
 
-      {/* Mobile: Vertical stacked cards */}
-      <div className="block sm:hidden px-4 relative z-10">
-        <div className="flex flex-col gap-3 max-w-sm mx-auto">
-          {clients.map((client, index) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-            >
-              <ClientCard {...client} compact />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Desktop: Left-to-right marquee */}
-      <div className="relative w-full overflow-hidden hidden sm:block">
-        {/* Smooth edge fades matching Hero background */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-light-bg dark:from-dark-bg to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-light-bg dark:from-dark-bg to-transparent z-10 pointer-events-none" />
-
-        <div className="flex w-max animate-marquee-ltr motion-reduce:animate-none hover:[animation-play-state:paused]">
-          {marqueeItems.map((client, index) => (
-            <div key={`${client.name}-${index}`} className="px-3 sm:px-4">
-              <ClientCard {...client} />
+        <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-8 w-full">
+          
+          {/* Section Header (Top Center of Card) */}
+          <div className="text-center space-y-1 sm:space-y-2 max-w-lg mx-auto">
+            <div className="text-xs font-bold text-brand-blue dark:text-brand-orange uppercase tracking-widest">
+              Our Clients
             </div>
-          ))}
+            <h2 className="font-outfit font-extrabold text-xl sm:text-2xl md:text-3xl text-brand-navy dark:text-white leading-tight">
+              Trusted by Leading Brands
+            </h2>
+          </div>
+
+          {/* Marquee Ticker (Below Header) */}
+          <div className="w-full overflow-hidden relative py-2">
+            {/* Smooth edge fades for the scrolling track inside the card */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white/90 dark:from-dark-card/90 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white/90 dark:from-dark-card/90 to-transparent z-10 pointer-events-none" />
+
+            <div className="flex w-max animate-marquee-rtl motion-reduce:animate-none hover:[animation-play-state:paused]">
+              {marqueeItems.map((client, index) => (
+                <div key={`${client.name}-${index}`} className="px-3">
+                  <ClientCard {...client} />
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
