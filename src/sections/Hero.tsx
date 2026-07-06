@@ -62,11 +62,11 @@ export const Hero: React.FC = () => {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="font-outfit font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.15] text-brand-navy dark:text-white"
+              className="font-outfit font-extrabold text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.15] text-brand-navy dark:text-white"
             >
               Building Smart <br />
               <span className="text-gradient-primary">
-                Digital Solutions
+                Websites & Digital Presence
               </span> <br />
               for Modern Businesses
             </motion.h1>
@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
               variants={itemVariants}
               className="text-slate-600 dark:text-slate-400 text-lg max-w-xl leading-relaxed"
             >
-              The premium engineering agency for software, cloud, and mobile products. We build modern, robust applications with speed, security, and precision.
+              We design and develop high-performing websites and custom web applications that help modern brands grow, engage audiences, and scale.
             </motion.p>
 
             {/* Redesigned Button Actions (Matching dizisolutions.in CTA focus) */}
