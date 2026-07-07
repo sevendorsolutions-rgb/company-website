@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, Shield, Users, Clock, Rocket, HeartHandshake, Briefcase, Cpu, Calendar, Target } from 'lucide-react';
+import { Zap, Shield, Users, Clock, Rocket, HeartHandshake, Cpu, Calendar, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const WhyUs: React.FC = () => {
