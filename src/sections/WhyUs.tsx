@@ -50,18 +50,11 @@ export const WhyUs: React.FC = () => {
 
   const stats = [
     {
-      value: '60+',
+      value: '15+',
       label: 'Team Members',
       icon: Users,
       gradient: 'from-brand-blue to-blue-600',
       shadow: 'shadow-brand-blue/20',
-    },
-    {
-      value: '15',
-      label: 'Dedicated Teams',
-      icon: Briefcase,
-      gradient: 'from-indigo-500 to-purple-600',
-      shadow: 'shadow-indigo-500/20',
     },
     {
       value: '6+',
@@ -90,6 +83,13 @@ export const WhyUs: React.FC = () => {
       icon: Clock,
       gradient: 'from-emerald-400 to-teal-600',
       shadow: 'shadow-emerald-500/20',
+    },
+    {
+      value: '15+',
+      label: 'Projects Launched',
+      icon: Rocket,
+      gradient: 'from-indigo-500 to-purple-600',
+      shadow: 'shadow-indigo-500/20',
     },
   ];
 
