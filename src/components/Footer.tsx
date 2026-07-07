@@ -118,24 +118,74 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 mb-6">
               <li>
                 <a
-                  href="https://hrms-product.vercel.app/login"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#products"
                   className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-blue hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
                 >
                   HRMS
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">↗</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://core-banking-seven.vercel.app/login"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#products"
                   className="text-slate-500 dark:text-slate-400 text-sm hover:text-brand-orange hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
                 >
                   Net Banking
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-violet-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  LMS
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-emerald-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  CRM
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-pink-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  E-Shop
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-cyan-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  Intellect
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-purple-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  CloudOps
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-rose-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  Support
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  className="text-slate-500 dark:text-slate-400 text-sm hover:text-teal-500 hover:pl-1 transition-all duration-300 flex items-center gap-1 group inline-block"
+                >
+                  AssetFlow
                 </a>
               </li>
             </ul>
